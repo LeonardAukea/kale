@@ -72,6 +72,7 @@ def auto_generated_pipeline({{ pipeline_args }}):
         annotations=annotations,
         {% endif -%}
         size='{{ pvc_size }}'
+        storage_class='efs',
     )
     volume = vop{{ loop.index }}.volume
 
@@ -86,6 +87,7 @@ def auto_generated_pipeline({{ pipeline_args }}):
         name="kale_marshal_volume",
         resource_name="kale-marshal-pvc",
         modes=dsl.VOLUME_MODE_RWM,
+        storage_class='efs',
         size="1Gi"
     )
     pvolumes_dict['{{ marshal_path }}'] = marshal_vop.volume
